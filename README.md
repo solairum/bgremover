@@ -30,15 +30,15 @@ On macOS, if `git` is not installed yet, the system will offer to install the de
 
 ### 2. Install the dependencies
 
-```bash
-# Create an isolated environment for the project
-python3 -m venv .venv
-source .venv/bin/activate        # on Windows: .venv\Scripts\activate
+Create an isolated environment for the project and install the dependencies:
 
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-On Windows, use `python` instead of `python3`.
+On Windows, use `python` instead of `python3`, and activate the environment with `.venv\Scripts\activate`.
 
 The first time you use a model, it is downloaded automatically (170 MB to 1 GB depending on the model).
 
