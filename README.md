@@ -1,5 +1,4 @@
 # bgremover
-# bgremover
 
 Remove the background from any image, **100% locally**. No account, no credits, no watermark, and your images never leave your computer.
 
@@ -38,17 +37,17 @@ The first time you use a model, it is downloaded automatically (170 MB to 1 GB d
 python app.py
 ```
 
-Your browser opens on the interface: drop an image, pick a model, click **Détourer**. Stop the app with `Ctrl + C` in the terminal.
+Your browser opens on the interface: drop an image, pick a model, click **Remove background**. Stop the app with `Ctrl + C` in the terminal.
 
 ### Command line
 
 ```bash
-python detourer.py photo.jpg
-python detourer.py photo.jpg --modele birefnet-general-lite --sujet-unique
-python detourer.py --help
+python remove_bg.py photo.jpg
+python remove_bg.py photo.jpg --model birefnet-general-lite --single-subject
+python remove_bg.py --help
 ```
 
-The result is saved as `photo_detouree.png` next to the original.
+The result is saved as `photo_nobg.png` next to the original.
 
 ## Models
 
