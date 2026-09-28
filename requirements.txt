@@ -1,0 +1,5 @@
+rembg[cpu]
+pillow
+numpy
+scipy
+gradio>=5
