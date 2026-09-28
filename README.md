@@ -16,10 +16,21 @@ A free and open-source alternative for people who just want a quick cutout.
 
 You need [Python](https://www.python.org/downloads/) 3.10 or newer.
 
+### 1. Get the code
+
+**Option A: download (no tools needed)**
+Click the green **Code** button at the top of this page, then **Download ZIP**. Unzip it, and open a terminal in the unzipped folder.
+
+**Option B: with git**
 ```bash
 git clone https://github.com/solairum/bgremover.git
 cd bgremover
+```
+On macOS, if `git` is not installed yet, the system will offer to install the developer tools: accept and try again.
 
+### 2. Install the dependencies
+
+```bash
 # Create an isolated environment for the project
 python3 -m venv .venv
 source .venv/bin/activate        # on Windows: .venv\Scripts\activate
@@ -27,7 +38,11 @@ source .venv/bin/activate        # on Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+On Windows, use `python` instead of `python3`.
+
 The first time you use a model, it is downloaded automatically (170 MB to 1 GB depending on the model).
+
+> **Every time you open a new terminal**, activate the environment again with `source .venv/bin/activate` (Windows: `.venv\Scripts\activate`) before running the app.
 
 ## Usage
 
