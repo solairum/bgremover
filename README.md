@@ -14,35 +14,75 @@ A free and open-source alternative for people who just want a quick cutout.
 
 ## Installation
 
-You need [Python](https://www.python.org/downloads/) 3.10 or newer.
+You need **[Python](https://www.python.org/downloads/) 3.10 to 3.13, 64-bit**. The newest Python releases are sometimes not yet supported by the AI libraries, so 3.13 is the safest choice.
 
 ### 1. Get the code
 
-**Option A: download (no tools needed)**
-Click the green **Code** button at the top of this page, then **Download ZIP**. Unzip it, and open a terminal in the unzipped folder.
+**Option A: download (no tools needed, recommended)**
+Click the green **Code** button at the top of this page, then **Download ZIP**. Unzip it (on Windows: right-click the ZIP, then **Extract All**; opening it with a double-click is not enough).
 
 **Option B: with git**
+
 ```bash
 git clone https://github.com/solairum/bgremover.git
 cd bgremover
 ```
-On macOS, if `git` is not installed yet, the system will offer to install the developer tools: accept and try again.
 
-### 2. Install the dependencies
+On macOS, if `git` is not installed, the system offers to install the developer tools: accept and try again. On Windows, install [Git for Windows](https://git-scm.com/download/win) first, then open a **new** terminal, or simply use option A.
 
-Create an isolated environment for the project and install the dependencies:
+### 2. Install and run
+
+#### macOS / Linux
+
+Open a terminal in the project folder (on macOS: right-click the folder in Finder, then **Services → New Terminal at Folder**) and run these commands one by one:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+python app.py
 ```
 
-On Windows, use `python` instead of `python3`, and activate the environment with `.venv\Scripts\activate`.
+#### Windows
 
-The first time you use a model, it is downloaded automatically (170 MB to 1 GB depending on the model).
+1. **Install Python from [python.org](https://www.python.org/downloads/)**, not from the Microsoft Store. On the first screen of the installer, check **"Add python.exe to PATH"** before clicking *Install Now*. At the end, click **"Disable path length limit"** if offered.
+2. **Install the [Microsoft Visual C++ Redistributable](https://aka.ms/vs/17/release/vc_redist.x64.exe)**. The AI engine needs it; without it, the app crashes with `DLL load failed`.
+3. **Open a terminal in the project folder**: open the folder in File Explorer (the one that directly contains `app.py`), click the address bar, type `cmd` and press Enter. Use this Command Prompt rather than PowerShell.
+4. **Run these commands one by one:**
 
-> **Every time you open a new terminal**, activate the environment again with `source .venv/bin/activate` (Windows: `.venv\Scripts\activate`) before running the app.
+```bat
+py -3.13 -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+python app.py
+```
+
+If Windows Defender asks whether Python may access the network, you can click *Cancel*: the app only runs on your own computer.
+
+### Next times
+
+The installation is done once. Every time you open a **new terminal**, activate the environment again, then start the app:
+
+- macOS / Linux: `source .venv/bin/activate` then `python app.py`
+- Windows: `.venv\Scripts\activate` then `python app.py`
+
+You know the environment is active when `(.venv)` appears at the start of the line. The first time you use a model, it is downloaded automatically (170 MB to 1 GB depending on the model).
+
+### Troubleshooting
+
+| Problem | Solution |
+|---|---|
+| `python: command not found` (macOS) | Use `python3` outside the environment. Inside it (`(.venv)` visible), `python` works. |
+| `python` opens the Microsoft Store or "is not recognized" (Windows) | Python was installed without PATH. Use `py` instead of `python`, or reinstall Python and check "Add python.exe to PATH". |
+| `git` is not recognized (Windows) | Use option A (Download ZIP), or install Git for Windows and open a new terminal. |
+| `Could not open requirements file` | The terminal is not in the right folder. After unzipping, the files are often in `bgremover-main\bgremover-main`. Type `dir` (Windows) or `ls` (macOS): you must see `app.py` and `requirements.txt`. |
+| `No matching distribution found for onnxruntime`, `Microsoft Visual C++ 14.0 is required` or `metadata-generation-failed` | Your Python version is too recent or 32-bit. Install Python 3.13 64-bit, delete the `.venv` folder and start the installation again. |
+| "Running scripts is disabled on this system" (Windows) | You are in PowerShell. Type `cmd`, press Enter, then activate the environment again. |
+| `DLL load failed while importing onnxruntime` (Windows) | Install the Microsoft Visual C++ Redistributable (step 2 above). |
+| `pip install` seems frozen | It downloads about 200 MB. Wait until you see `Successfully installed`. |
+| `CERTIFICATE_VERIFY_FAILED` when downloading a model (macOS) | Go to **Applications → Python 3.x** and double-click **Install Certificates.command**. |
+
+Still stuck? [Open an issue](https://github.com/solairum/bgremover/issues) with your operating system, your Python version (`python --version`) and the full error message.
 
 ## Usage
 
